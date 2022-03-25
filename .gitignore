@@ -107,3 +107,4 @@ StudentAssets
 **/obj
 **/bin
 .vs**
+appsettings
