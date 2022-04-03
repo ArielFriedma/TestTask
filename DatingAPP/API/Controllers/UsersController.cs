@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using API.Data;
 using API.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -21,16 +22,18 @@ namespace API.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public async Task<ActionResult<IEnumerable<AppUser>>> GetUsers()
         {
             var users= await _context.Users.ToListAsync();
             return users;
         }
 
+        [Authorize]
         [HttpGet("{id}")] //:id route parameter: api/users/2
-        public ActionResult<AppUser> GetUser(int id)
+        public async Task<ActionResult<AppUser>> GetUser(int id)
         {
-            var user= _context.Users.Find(id);
+            var user=await _context.Users.FindAsync(id);
             return user;
         }
     }
