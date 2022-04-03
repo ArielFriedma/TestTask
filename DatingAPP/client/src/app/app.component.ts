@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { response } from 'express';
+import { AccountService } from './services/account.service';
 
 @Component({
   selector: 'app-root',
@@ -11,34 +12,17 @@ export class AppComponent implements OnInit {
   title = 'Ariel Dating App';
   users: any;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private accountService: AccountService) {
 
   }
 
   ngOnInit(): void {
-    this.getUsers();
+    this.setCurrentUser();
   }
-
-  getUsers(){
-    this.http.get('https://localhost:5001/api/users').subscribe(res=>{
-      this.users=res;
-    },
-    err=>{
-      console.log(err);
-    },
-    ()=>{
-      console.log('Users Loaded');
-    });
-    //   {
-    //   next:(data)=>{
-    //     this.users=data;
-    //   },
-    //   error:(err)=>{
-    //     console.log(err);
-    //   },
-    //   complete:()=>{
-    //     console.log('complete');
-    //   }
-    // })
+  setCurrentUser(){
+    const userFromLS:any = localStorage.getItem('user');
+    const user = JSON.parse(userFromLS);
+    this.accountService.setCurrentUser(user);
   }
 }
+
