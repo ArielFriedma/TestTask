@@ -9,8 +9,9 @@ import { AccountService } from './services/account.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title = 'Ariel Dating App';
+  title = 'Famous Quote Quiz';
   users: any;
+  username: string='';
 
   constructor(private accountService: AccountService) {
 
@@ -23,6 +24,7 @@ export class AppComponent implements OnInit {
     const userFromLS:any = localStorage.getItem('user');
     const user = JSON.parse(userFromLS);
     this.accountService.setCurrentUser(user);
+    this.username = user.username;
   }
 }
 

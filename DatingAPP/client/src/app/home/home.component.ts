@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-home',
@@ -9,7 +11,7 @@ import { Component, OnInit } from '@angular/core';
 export class HomeComponent implements OnInit {
   registerMode = false;
   users: any;
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient, private router: Router) { }
 
   ngOnInit(): void {
     this.getUsers()
@@ -19,6 +21,7 @@ export class HomeComponent implements OnInit {
 
   registerToggle(){
     this.registerMode = !this.registerMode;
+    
   }
   getUsers() {
     this.http.get('https://localhost:5001/api/users')

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { response } from 'express';
-import { map, ReplaySubject } from 'rxjs';
+import { map, Observable, ReplaySubject } from 'rxjs';
 import { User } from '../models/User';
 
 @Injectable({
@@ -11,6 +11,7 @@ export class AccountService {
   
   baseUrl = 'https://localhost:5001/api/';
   constructor(private http:HttpClient) { }
+  
   private currentUserSource$ = new ReplaySubject<User | null>(1);
   currentUser$ = this.currentUserSource$.asObservable();
 
@@ -48,5 +49,12 @@ export class AccountService {
         return user;
       })
     )
+  }
+  getUsers(): Observable<User[]> {
+    return this.http.get<User[]>(`${this.baseUrl}members`)
+  }
+
+  getUser(username: string): Observable<User> {
+    return this.http.get<User>(`${this.baseUrl}member/${username}`)
   }
 }

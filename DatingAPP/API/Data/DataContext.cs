@@ -12,6 +12,8 @@ namespace API.Data
         public DataContext(DbContextOptions options):base(options){
 
         }
+        public DbSet<AppQuote> Quotes { get; set; }
         public DbSet<AppUser> Users { get; set; }
+        
     }
 }
