@@ -18,6 +18,38 @@ namespace API.Data.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "5.0.15");
 
+            modelBuilder.Entity("API.Entities.AppQuote", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Answer1")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Answer2")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Answer3")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Answer4")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("CurrectAnswer")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Quiz")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("QuoteType")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Quotes");
+                });
+
             modelBuilder.Entity("API.Entities.AppUser", b =>
                 {
                     b.Property<int>("Id")
