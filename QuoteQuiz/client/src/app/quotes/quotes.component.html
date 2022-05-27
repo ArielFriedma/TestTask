@@ -1,0 +1,63 @@
+<div class="container">
+  <div class="text-center mb-5 mt-5">
+<div class="row mb-5 mt-5">
+    <h2 class="text-center text-primary mb-4">Insert new Quote</h2>
+    <h3 class="mb-4">Choose the Type you want</h3>
+    <form #ChoseGameForm="ngForm" class="form-inline mt-2 mt-md-0" autocomplete="off">
+      <input #aaaa type="radio" class="btn-check" ng-value="1" ng-model="11" name="options-outlined" id="1" autocomplete="off" value="1" checked>
+      <label class="btnradio btn btn-outline-success" for="1"  (click)="startGame(1)">Binary</label>
+
+      <input #bbbb type="radio" class="btn-check" ng-value="2" ng-model="22" name="options-outlined" id="2" autocomplete="off" value="2">
+      <label class="btnradio btn btn-outline-danger" for="2" (click)="startGame(0)">Multiple</label>
+      <!-- <button class="btn btn-primary" type="submit">Start</button> -->
+  </form>
+  
+  <ng-container *ngIf="yesNo">
+      <h4 class="mt-2">New Binary (Yes/No) question</h4>
+      <form #QuoteForm="ngForm" (ngSubmit)="newQuote()" autocomplete="off">
+
+        <br>
+        <div class="form-group">
+    
+            <input type="text" class="form-control mb-3" name="Quiz" [(ngModel)]="model.Quiz" placeholder="Write here the quote and the name of the person">
+            <input type="number" class="form-control mb-3" name="currectAnswer" [(ngModel)]="model.CurrectAnswer" placeholder="If the answer is yes write here 1 else write 0">
+            <!-- <input type="number" class="form-control" name="quoteType" [(ngModel)]="model.QuoteType" value="0" [value]=0> -->
+        </div>
+        <div class="form-group">
+            
+            <button class="btn btn-success mr-2" type="submit">Send</button>
+            <button class="btn btn-default mr-2" type="button" (click)="cancel()">Cancel</button>
+        </div>
+    </form>
+  </ng-container>
+  <ng-container *ngIf="!yesNo">
+      <h4 class="mt-2">New Multiple choice question</h4>
+      <form #QuoteForm="ngForm" (ngSubmit)="newQuoteMulti()" autocomplete="off">
+        <br>
+        <div class="form-group">
+    
+            <input type="text" class="form-control mb-3" name="Quiz" [(ngModel)]="model.Quiz" placeholder="Write here the quote">
+            <input type="text" class="form-control mb-3" name="answer1" [(ngModel)]="model.Answer1" placeholder="Option 1">
+            <input type="text" class="form-control mb-3" name="answer2" [(ngModel)]="model.Answer2" placeholder="Option 2">
+            <input type="text" class="form-control mb-3" name="answer3" [(ngModel)]="model.Answer3" placeholder="Option 3">
+            <input type="text" class="form-control mb-3" name="answer4" [(ngModel)]="model.Answer4" placeholder="Option 4">
+            <input type="number" class="form-control  mb-3" name="currectAnswer" [(ngModel)]="model.CurrectAnswer" placeholder="Enter the number of the currect answer (1-4)">
+            <!-- <input type="number" class="form-control" name="quoteType" [(ngModel)]="model.QuoteType" value="1"> -->
+
+        </div>
+        <div class="form-group">
+            
+            <button class="btn btn-success mr-2" type="submit">Send</button>
+            <button class="btn btn-default mr-2" type="button" (click)="cancel()">Cancel</button>
+        </div>
+    </form>
+  </ng-container>
+  </div>
+  </div>
+  </div>
+
+
+  
+
+  
+    
