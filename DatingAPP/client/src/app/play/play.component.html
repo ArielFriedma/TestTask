@@ -1,0 +1,43 @@
+<div class="container">
+    <div class="text-center">
+        <h2 class="text-center text-primary mb-4 mt-4">Lets Play</h2>
+<h4 class="m-4">Choose the type of game that you prefer</h4>
+
+<form name="ariel" #ChoseGameForm="ngForm" class="form-inline" (ngSubmit)="sendRadio();" autocomplete="off">
+    
+    <div class="text-center">
+        <input #aaaa type="radio" class="btn-check mr-5" ng-value="1" ng-model="11" name="options-outlined" id="1" autocomplete="off" value="1" checked>
+        <label class="btn btn-outline-success" for="1"  (click)="startGame(1)">Binary (Yes/No)</label>
+        
+        <input #bbbb type="radio" class="btn-check mr-5" ng-value="2" ng-model="22" name="options-outlined" id="2" autocomplete="off" value="2">
+        <label class="btn btn-outline-danger" for="2" (click)="startGame(0)">Multiple choice questions</label>
+        <!-- <button class="btn btn-primary" type="submit">Start</button> -->
+    </div>
+    
+    </form>
+    <ng-container *ngIf="yesNo">
+        <h3>Binary (Yes/No)</h3>
+        <app-quote-play ></app-quote-play>
+        <!-- //[quotesFromQouteComponent]="qoute" -->
+    </ng-container>
+    <ng-container *ngIf="!yesNo">
+        <h3>Multiple choice questions</h3>
+        <app-play-multi></app-play-multi>
+    </ng-container>
+
+    <!-- <select class="form-control">
+        <option *ngFor="let qoute of quoteFromQuoteComponent" [value]="qoute.quiz">{{qoute.quiz}}</option>
+      </select>
+
+      <select class="form-control">
+        <option *ngFor="let qoute of quotes" >1</option>
+      </select> -->
+
+<div class="row">
+    <div class="col-2" *ngFor="let quote of quotes">
+      <app-lists [quote]="quote"></app-lists>
+    </div>
+  </div>
+      
+    </div>
+</div>
